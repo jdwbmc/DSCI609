@@ -1,0 +1,433 @@
+---
+title: "R Code"
+author: "John D Williams"
+date: "2026-03-29"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## My Basic R Code
+
+```{r}
+#Total paper
+#Preliminaries
+library(dplyr)
+library(tidyverse)
+```
+
+## Preliminary
+```{r}
+setwd("C:/Users/Owner/Documents/BallState/DSCI-609 SocSci/Paper")
+gss_data <- read.csv("gss_data.csv")
+
+# Keep columns where the count of non-NA values is greater than 0
+gss_data1 <- gss_data[, colSums(is.na(gss_data)) < nrow(gss_data)]
+
+gss_data1$sex <- as_factor(gss_data1$sex)
+
+# Cleaning missing values before analysis [cite: 69]
+gss_data1$happy[gss_data1$happy > 3] <- NA
+gss_data1$goodlife[gss_data1$goodlife > 5] <- NA
+gss_data1$satfin[gss_data1$satfin > 6000] <- NA
+gss_data1$sex[gss_data1$sex > 2] <- NA
+gss_data1$degree[gss_data1$degree > 4] <- NA
+gss_data1$realinc[gss_data1$realinc > 100000] <- NA
+gss_data1$age[gss_data1$age > 90] <- NA
+gss_data1$polviews[gss_data1$polviews > 7] <- NA
+
+# Narrow the scope to the 3–5 key variables suggested in the approach [cite: 36, 37]
+gss_data2 <- gss_data1[, c("happy", "goodlife", "satfin", "degree", "realinc", "age", "sex", "polviews")]
+```
+
+## Batch 1
+```{r}
+#Batch1
+library(tidyverse)
+library(car) # For Levene's Test
+library(ggplot2)
+
+# 1. Precise Cleaning for GSS codes
+# We must ensure 'sex' is a factor and 'goodlife' is numeric and filtered
+gss_clean <- gss_data2 %>%
+  mutate(
+    # Convert goodlife to numeric and handle GSS missing codes (0, 8, 9) [cite: 68-72]
+    goodlife_num = as.numeric(as.character(goodlife)),
+    goodlife_num = ifelse(goodlife_num > 5, NA, goodlife_num),
+    
+    # Force sex to be a Factor (this fixes the Levene's Test error) 
+    sex_factor = as.factor(sex)
+  ) %>%
+  # Filter to keep ONLY Male and Female and remove any remaining NAs
+  filter(sex_factor %in% c("male", "female"), !is.na(goodlife_num)) %>%
+  # Drop unused levels like 'skipped on web' or 'iap'
+  mutate(sex_factor = fct_drop(sex_factor))
+
+# 2. Verify the Descriptive Statistics
+# You should see actual numbers for Mean and SD now
+gss_clean %>%
+  group_by(sex_factor) %>%
+  summarise(
+    Mean = mean(goodlife_num),
+    SD = sd(goodlife_num),
+    N = n()
+  )
+
+# 3. Homogeneity of Variance (Levene's Test)
+# This will now run because sex_factor is an explicit factor 
+lt <- leveneTest(goodlife_num ~ sex_factor, data = gss_clean)
+print(lt)
+
+# 4. Independent Samples t-test
+# We compare the means of these two groups [cite: 91, 99]
+t_test_results <- t.test(goodlife_num ~ sex_factor, data = gss_clean, var.equal = TRUE)
+
+print(t_test_results)
+
+# 5. Prepare the plotting data (Calculating Standard Error)
+batch1_plot_data <- gss_clean %>%
+  group_by(sex_factor) %>%
+  summarise(
+    Mean = mean(goodlife_num, na.rm = TRUE),
+    SD = sd(goodlife_num, na.rm = TRUE),
+    N = n(),
+    SE = SD / sqrt(N)  # Formula for Standard Error
+  )
+
+# 6. Create the Bar Chart
+ggplot(batch1_plot_data, aes(x = sex_factor, y = Mean, fill = sex_factor)) +
+  geom_bar(stat = "identity", width = 0.6, color = "black", alpha = 0.8) +
+  geom_errorbar(aes(ymin = Mean - SE, ymax = Mean + SE), width = 0.2) +
+  labs(
+    title = "Economic Optimism by Gender",
+    subtitle = "Error bars represent +/- 1 Standard Error",
+    x = "Gender",
+    y = "Mean Optimism Score (Lower = More Optimistic)",
+    caption = "Source: General Social Survey (GSS)"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("female" = "#f8766d", "male" = "#00bfc4")) +
+  theme(legend.position = "none") # Hide legend as X-axis labels are clear
+```
+
+## Batch 2
+```{r}
+#Batch2
+# --- Batch 2: Two-Way ANOVA ---
+# IV1: sex_factor, IV2: degree, DV: goodlife_num
+
+# 1. Prepare the Data
+gss_batch2 <- gss_clean %>%
+  mutate(
+    # Ensure 'degree' is a factor with correct GSS labels [cite: 57]
+    degree_factor = as.factor(degree),
+    degree_factor = fct_recode(degree_factor,
+                               "LT High School" = "0",
+                               "High School" = "1",
+                               "Junior College" = "2",
+                               "Bachelor" = "3",
+                               "Graduate" = "4"
+    )
+  ) %>%
+  filter(!is.na(degree_factor))
+
+# Generate the Table Values for Batch 2
+ipv <-gss_batch2 %>%
+  group_by(degree_factor) %>%
+  summarise(
+    Mean_Optimism = mean(goodlife_num, na.rm = TRUE),
+    Std_Dev = sd(goodlife_num, na.rm = TRUE),
+    N = n()
+  )
+print(ipv)
+
+# 2. Run the Two-Way ANOVA (Interaction Model) [cite: 122-125]
+anova_results <- aov(goodlife_num ~ sex_factor * degree_factor, data = gss_batch2)
+
+# 3. View the ANOVA Table
+summary(anova_results)
+
+# 4. Interaction Plot (Visualizing the "Glass Ceiling") [cite: 126-129]
+interaction.plot(gss_batch2$degree_factor, gss_batch2$sex_factor, gss_batch2$goodlife_num,
+                 xlab = "Highest Degree Attained",
+                 ylab = "Mean GOODLIFE Score",
+                 main = "Interaction of Gender and Education on Optimism",
+                 col = c("blue", "red"), lty = 1, lwd = 2)
+
+```
+
+## Preliminary Part 2
+```{r}
+library(WDI)
+# Pull with a more stable GDP code:
+# NY.GDP.PCAP.PP.CD is GDP per capita, PPP (current international $)
+world_data <- WDI(
+  country = "all",
+  indicator = c(
+    Life_Expectancy = "SP.DYN.LE00.IN",
+    GDP_per_capita  = "NY.GDP.PCAP.PP.CD", 
+    Health_Spend    = "SH.XPD.CHEX.GD.ZS",
+    Education_Rate  = "SE.SEC.ENRR"
+  ),
+  start = 2005,
+  end = 2022,
+  extra = FALSE
+)
+
+#Added to get regions
+#Access the built-in country metadata
+country_info <- as.data.frame(WDI_data$country)
+
+# Select only the columns we need: ISO code and Region
+region_map <- country_info[, c("iso2c", "region")]
+
+# Merge it into your world_data
+world_data_with_regions <- merge(world_data, region_map, by = "iso2c", all.x = TRUE)
+
+# Filter for rows that are actual countries (removes aggregate regions like 'Arab World')
+world_data1 <- world_data_with_regions[world_data_with_regions$region != "Aggregates", ]
+
+# Filter for rows that are actual countries (removes aggregate regions like 'Arab World')
+world_data2 <- world_data1[world_data1$region != "Aggregates", ]
+
+# Define the columns you want to get rid of
+unwanted_cols <- c("iso2c")
+
+world_data3 <- world_data2 %>%
+  # Drop only the columns that actually exist in the data
+  dplyr::select(-one_of(intersect(names(.), unwanted_cols))) %>%
+  
+  # Rename country to country_name
+  rename(country_name = country)
+```
+
+## Batch 3
+```{r}
+#Batch3
+# --- Batch 3: Multiple Regression ---
+# Dataset: WDI
+# DV: Life_Expectancy
+# IVs: GDP_per_capita, Health_Spend, Education_Rate
+library(ggfortify)
+
+# 1. Run the Regression Model
+# Using log() for GDP as recommended in the Paper Approach [cite: 170]
+regression_model <- lm(Life_Expectancy ~ log(GDP_per_capita) + Health_Spend + Education_Rate, 
+                       data = world_data3)
+
+# 2. View the Results
+summary(regression_model)
+# Create both plots side-by-side
+autoplot(regression_model, which = 1:2, ncol = 2) + 
+  theme_minimal() +
+  labs(title = "Diagnostic Plots for Global Life Expectancy Model",
+       caption = "Batch 3: WDI Regression Analysis")
+```
+
+## Batch 4
+```{r}
+#Batch4
+library(mediation)
+library(DiagrammeR)
+
+# 1. Clean and Prepare GSS Data
+gss_med <- gss_data2 %>%
+  mutate(
+    # Reverse code happy: Higher = Happier (3 = Very Happy, 1 = Not Too Happy)
+    happy_rev = case_when(
+      happy == 1 ~ 3,
+      happy == 2 ~ 2,
+      happy == 3 ~ 1,
+      TRUE ~ NA_real_
+    ),
+    # Ensure income and degree are numeric
+    income_num = as.numeric(as.character(realinc)),
+    edu_num = as.numeric(as.character(degree))
+  ) %>%
+  drop_na(happy_rev, income_num, edu_num)
+
+# 2. Path A: Education -> Income
+fit.mediator <- lm(income_num ~ edu_num, data = gss_med)
+
+# 3. Path B & C': Education + Income -> Happiness
+fit.dv <- lm(happy_rev ~ edu_num + income_num, data = gss_med)
+
+# 4. Run the Mediation Analysis
+med_results <- mediate(fit.mediator, fit.dv, treat = "edu_num", mediator = "income_num", boot = TRUE, sims = 100)
+
+# 5. Summary
+summary(med_results)
+
+# Path a (Education -> Income)
+model_a <- lm(scale(income_num) ~ scale(edu_num), data = gss_med)
+beta_a <- round(coef(model_a)[2], 3)
+
+# Path b & c' (Income and Education -> Happiness)
+model_bc <- lm(scale(happy_rev) ~ scale(edu_num) + scale(income_num), data = gss_med)
+beta_c_prime <- round(coef(model_bc)[2], 3) # Direct effect
+beta_b <- round(coef(model_bc)[3], 3)       # Mediator effect
+
+# Print them to use in the diagram
+cat("Path a:", beta_a, "\nPath b:", beta_b, "\nPath c':", beta_c_prime)
+
+library(DiagrammeR)
+
+grViz("
+  digraph mediation {
+    # General Graph Settings
+    graph [layout = dot, rankdir = LR]
+    node [shape = box, fontname = Helvetica, penwidth = 2]
+    
+    # Define the Nodes (X, M, Y)
+    X [label = 'Education\n(X)']
+    M [label = 'Real Income\n(M)']
+    Y [label = 'Happiness\n(Y)']
+
+    # Define the Paths (Arrows)
+    # Using your actual Batch 4 results:
+    X -> M [label = 'Path a (Significant)']
+    M -> Y [label = 'Path b (Significant)']
+    
+    # Path c-prime is the 'ADE' from your PDF (0.00018, p = 0.94)
+    # We use a dashed line because it is NOT significant
+    X -> Y [label = 'Direct (c-prime) = 0.00 (ns)', style = dashed]
+    
+    # Add the Total Effect and Indirect Effect as a note
+    edge [fontname = Helvetica, fontsize = 10]
+    
+    # Optional: Label the indirect effect (ACME)
+    X -> M -> Y [color = blue, label = 'Indirect (ACME) = 0.034***']
+  }
+")
+```
+
+## Batch 5
+```{r}
+#Batch5
+library(tidyverse)
+library(lme4)
+library(performance)
+library(sjPlot)
+library(ggplot2)
+
+setwd("C:/Users/Owner/Documents/BallState/DSCI-609 SocSci/Paper")
+
+#Load the raw data
+oecd_raw <- read.csv("oced_bli.csv")
+
+#Create the Regional Mapping
+# We must ensure North America and Sub-Saharan Africa are distinct groups
+region_map <- data.frame(
+  country_name = c(
+    "Australia", "Austria", "Belgium", "Brazil", "Canada", "Chile", "Colombia", 
+    "Costa Rica", "Czechia", "Denmark", "Estonia", "Finland", "France", "Germany", 
+    "Greece", "Hungary", "Iceland", "Ireland", "Israel", "Italy", "Japan", "Korea", 
+    "Latvia", "Lithuania", "Luxembourg", "Mexico", "Netherlands", "New Zealand", 
+    "Norway", "Poland", "Portugal", "Russia", "Slovak Republic", "Slovenia", 
+    "South Africa", "Spain", "Sweden", "Switzerland", "Türkiye", "United Kingdom", 
+    "United States"
+  ),
+  region = c(
+    "East Asia & Pacific", "Europe & Central Asia", "Europe & Central Asia", 
+    "Latin America & Caribbean", "North America", "Latin America & Caribbean", 
+    "Latin America & Caribbean", "Latin America & Caribbean", "Europe & Central Asia", 
+    "Europe & Central Asia", "Europe & Central Asia", "Europe & Central Asia", 
+    "Europe & Central Asia", "Europe & Central Asia", "Europe & Central Asia", 
+    "Europe & Central Asia", "Europe & Central Asia", "Europe & Central Asia", 
+    "Middle East & North Africa", "Europe & Central Asia", "East Asia & Pacific", 
+    "East Asia & Pacific", "Europe & Central Asia", "Europe & Central Asia", 
+    "Europe & Central Asia", "Latin America & Caribbean", "Europe & Central Asia", 
+    "East Asia & Pacific", "Europe & Central Asia", "Europe & Central Asia", 
+    "Europe & Central Asia", "Europe & Central Asia", "Europe & Central Asia", 
+    "Europe & Central Asia", "Sub-Saharan Africa", "Europe & Central Asia", 
+    "Europe & Central Asia", "Europe & Central Asia", "Europe & Central Asia", 
+    "Europe & Central Asia", "North America"
+  )
+)
+
+#Clean and Pivot the Data
+batch_5_data <- oecd_raw %>%
+  dplyr::filter(
+    Indicator %in% c(
+      "Life satisfaction", 
+      "Quality of support network", 
+      "Employment rate", 
+      "Household net adjusted disposable income", 
+      "Housing expenditure"
+    ),
+    Inequality == "Total"
+  ) %>%
+  dplyr::select(Country, Indicator, OBS_VALUE) %>%
+  tidyr::pivot_wider(names_from = Indicator, values_from = OBS_VALUE) %>%
+  dplyr::rename(
+    country_name = Country,
+    life_satisfaction = `Life satisfaction`,
+    social_support = `Quality of support network`,
+    employment_rate = `Employment rate`,
+    GDP_per_capita = `Household net adjusted disposable income`,
+    housing_affordability = `Housing expenditure`
+  ) %>%
+  dplyr::left_join(region_map, by = "country_name") %>%
+  # Crucial: This is where your previous code stopped/broke.
+  # We drop rows with missing values to ensure the Factor Analysis has data to work with.
+  drop_na(life_satisfaction, social_support, employment_rate, GDP_per_capita, housing_affordability, region)
+
+#Fit a Null Multilevel Model
+mlm_null <- lmer(life_satisfaction ~ 1 + (1 | region), data = batch_5_data)
+cat("Null Model ICC (Regional variance focus):\n")
+print(performance::icc(mlm_null))
+
+#Fit the final requested model
+mlm_final <- lmer(life_satisfaction ~ social_support + (1 | region), data = batch_5_data)
+summary(mlm_final)
+
+# Create the Caterpillar Plot for the final model
+plot_model(mlm_final, type = "re", show.values = TRUE, value.offset = .3) +
+  theme_minimal() +
+  labs(
+    title = "Caterpillar Plot: Regional Variation in Life Satisfaction",
+    subtitle = "Random Intercepts by World Region (Batch 5)",
+    y = "Adjustment to Global Intercept",
+    x = "Region"
+  ) +
+  # Adds a horizontal line at 0 (the global average)
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red")
+```
+
+## Batch 6
+```{r}
+#Batch6
+library(tidyverse)
+library(psych)
+
+#Select the indicators for the Quality of Life Factor
+# Now we select the numeric columns from our clean batch_5_data
+efa_data <- batch_5_data %>%
+  dplyr::select(
+    GDP_per_capita, 
+    housing_affordability, 
+    employment_rate, 
+    social_support, 
+    life_satisfaction
+  )
+
+#Suitability tests
+print(KMO(cor(efa_data)))
+print(bartlett.test(efa_data))
+
+# 1. Run the Parallel Analysis and Scree Plot
+# n.iter = 100 runs a simulation to show where 'random' factors would fall
+parallel_results <- fa.parallel(
+  efa_data, 
+  fm = "minres", # Minimum Residual factor method
+  fa = "fa",     # Looking specifically for Factors
+  n.iter = 100, 
+  main = "Scree Plot: Identifying the 'Quality of Life' Factor"
+)
+
+# 2. Add a horizontal line at Eigenvalue = 1 (Kaiser Criterion)
+abline(h = 1, col = "red", lty = 2)
+```
+

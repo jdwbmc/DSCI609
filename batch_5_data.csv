@@ -1,0 +1,85 @@
+"","STRUCTURE","STRUCTURE_ID","STRUCTURE_NAME","ACTION","LOCATION","country_name","INDICATOR","MEASURE","Measure","INEQUALITY","Inequality","OBS_STATUS","UNIT_MEASURE","Unit.of.Measures","UNIT_MULT","Multiplier","social_support","life_satisfaction"
+"1","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","AUS","Australia","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",93,NA
+"2","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","AUT","Austria","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",92,NA
+"3","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","BEL","Belgium","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",90,NA
+"4","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CAN","Canada","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",93,NA
+"5","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CZE","Czechia","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",96,NA
+"6","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","DNK","Denmark","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",95,NA
+"7","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","FIN","Finland","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",96,NA
+"8","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","FRA","France","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",94,NA
+"9","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","DEU","Germany","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",90,NA
+"10","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","GRC","Greece","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",78,NA
+"11","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","HUN","Hungary","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",94,NA
+"12","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ISL","Iceland","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",98,NA
+"13","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","IRL","Ireland","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",96,NA
+"14","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ITA","Italy","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",89,NA
+"15","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","JPN","Japan","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",89,NA
+"16","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","KOR","Korea","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",80,NA
+"17","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","LUX","Luxembourg","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",91,NA
+"18","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","MEX","Mexico","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",77,NA
+"19","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","NLD","Netherlands","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",94,NA
+"20","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","NZL","New Zealand","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",95,NA
+"21","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","NOR","Norway","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",96,NA
+"22","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","POL","Poland","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",94,NA
+"23","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","PRT","Portugal","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",87,NA
+"24","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","SVK","Slovak Republic","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",95,NA
+"25","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ESP","Spain","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",93,NA
+"26","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","SWE","Sweden","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",94,NA
+"27","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CHE","Switzerland","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",94,NA
+"28","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","TUR","Türkiye","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",85,NA
+"29","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","GBR","United Kingdom","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",93,NA
+"30","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","USA","United States","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",94,NA
+"31","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","BRA","Brazil","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",83,NA
+"32","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CHL","Chile","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",88,NA
+"33","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","EST","Estonia","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",95,NA
+"34","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ISR","Israel","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",95,NA
+"35","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","LVA","Latvia","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",92,NA
+"36","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","RUS","Russia","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",89,NA
+"37","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","SVN","Slovenia","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",95,NA
+"38","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ZAF","South Africa","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",89,NA
+"39","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","OECD","OECD - Total","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",91,NA
+"40","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","COL","Colombia","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",80,NA
+"41","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","LTU","Lithuania","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",89,NA
+"42","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CRI","Costa Rica","SC_SNTWS","L","Value","TOT","Total","A","PC","Percentage",0,"Units",82,NA
+"43","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","AUS","Australia","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.1
+"44","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","AUT","Austria","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.2
+"45","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","BEL","Belgium","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.8
+"46","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CAN","Canada","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7
+"47","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CZE","Czechia","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.9
+"48","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","DNK","Denmark","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.5
+"49","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","FIN","Finland","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.9
+"50","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","FRA","France","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.7
+"51","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","DEU","Germany","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.3
+"52","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","GRC","Greece","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,5.8
+"53","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","HUN","Hungary","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6
+"54","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ISL","Iceland","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.6
+"55","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","IRL","Ireland","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7
+"56","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ITA","Italy","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.5
+"57","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","JPN","Japan","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.1
+"58","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","KOR","Korea","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,5.8
+"59","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","LUX","Luxembourg","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.4
+"60","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","MEX","Mexico","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6
+"61","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","NLD","Netherlands","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.5
+"62","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","NZL","New Zealand","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.3
+"63","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","NOR","Norway","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.3
+"64","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","POL","Poland","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.1
+"65","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","PRT","Portugal","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,5.8
+"66","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","SVK","Slovak Republic","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.5
+"67","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ESP","Spain","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.5
+"68","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","SWE","Sweden","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.3
+"69","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CHE","Switzerland","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.5
+"70","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","TUR","Türkiye","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,4.9
+"71","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","GBR","United Kingdom","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.8
+"72","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","USA","United States","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7
+"73","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","BRA","Brazil","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.1
+"74","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CHL","Chile","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.2
+"75","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","EST","Estonia","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.5
+"76","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ISR","Israel","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,7.2
+"77","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","LVA","Latvia","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.2
+"78","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","RUS","Russia","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,5.5
+"79","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","SVN","Slovenia","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.5
+"80","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","ZAF","South Africa","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,4.9
+"81","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","OECD","OECD - Total","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.7
+"82","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","COL","Colombia","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,5.7
+"83","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","LTU","Lithuania","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.4
+"84","DATAFLOW","OECD:DF_BLI(1.0)","Better Life Index","I","CRI","Costa Rica","SW_LIFS","L","Value","TOT","Total","A","AVSCORE","Average score",0,"Units",NA,6.3
