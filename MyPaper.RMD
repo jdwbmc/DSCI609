@@ -115,13 +115,20 @@ ggplot(batch1_plot_data, aes(x = sex_factor, y = Mean, fill = sex_factor)) +
 ## Batch 2
 ```{r}
 #Batch2
-# --- Batch 2: Two-Way ANOVA ---
-# IV1: sex_factor, IV2: degree, DV: goodlife_num
+# --- Rebuild gss_clean from gss_data2 with correct sex coding ---
+gss_clean <- gss_data2 %>%
+  mutate(
+    goodlife_num = as.numeric(as.character(goodlife)),
+    goodlife_num = ifelse(goodlife_num > 5, NA, goodlife_num),
+    sex_factor = factor(tolower(trimws(as.character(sex))),
+                        levels = c("male", "female"))
+  ) %>%
+  filter(!is.na(goodlife_num), !is.na(sex_factor)) %>%
+  mutate(sex_factor = fct_drop(sex_factor))
 
 # 1. Prepare the Data
 gss_batch2 <- gss_clean %>%
   mutate(
-    # Ensure 'degree' is a factor with correct GSS labels [cite: 57]
     degree_factor = as.factor(degree),
     degree_factor = fct_recode(degree_factor,
                                "LT High School" = "0",
@@ -134,7 +141,7 @@ gss_batch2 <- gss_clean %>%
   filter(!is.na(degree_factor))
 
 # Generate the Table Values for Batch 2
-ipv <-gss_batch2 %>%
+ipv <- gss_batch2 %>%
   group_by(degree_factor) %>%
   summarise(
     Mean_Optimism = mean(goodlife_num, na.rm = TRUE),
@@ -143,18 +150,19 @@ ipv <-gss_batch2 %>%
   )
 print(ipv)
 
-# 2. Run the Two-Way ANOVA (Interaction Model) [cite: 122-125]
+# 2. Run the Two-Way ANOVA
 anova_results <- aov(goodlife_num ~ sex_factor * degree_factor, data = gss_batch2)
 
 # 3. View the ANOVA Table
 summary(anova_results)
 
-# 4. Interaction Plot (Visualizing the "Glass Ceiling") [cite: 126-129]
+# 4. Interaction Plot
 interaction.plot(gss_batch2$degree_factor, gss_batch2$sex_factor, gss_batch2$goodlife_num,
                  xlab = "Highest Degree Attained",
                  ylab = "Mean GOODLIFE Score",
                  main = "Interaction of Gender and Education on Optimism",
-                 col = c("blue", "red"), lty = 1, lwd = 2)
+                 col = c("blue", "red"), lty = 1, lwd = 2,
+                 ylim = c(2.0, 2.9))
 
 ```
 
